@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player2 : Player2Input {
+public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
