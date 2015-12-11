@@ -9,6 +9,8 @@ public class Player : ControllerInput {
     //Jumping
     private bool    _canJump;
     private int     _jumpCount;
+    [SerializeField]
+    private float   _jumpheight;
     [SerializeField]    
     private int     _maxJumps;
     //Speed
@@ -20,10 +22,12 @@ public class Player : ControllerInput {
     private float   _attackInterval = 1;
     private float   _attackTimer = 0;
     //Particles & Animator
-    private Animator _playerAnim;
+    Animator _playerAnim;
     [SerializeField]
     private GameObject _smokeCloud;
     private bool _isMoving;
+
+
 	// Use this for initialization
 	void Start () 
     {
@@ -92,7 +96,7 @@ public class Player : ControllerInput {
        {
            if(_aPressed)
            {
-               this.GetComponent<Rigidbody>().velocity = new Vector3(0, 8, 0);
+               this.GetComponent<Rigidbody>().velocity = new Vector3(0, _jumpheight, 0);
                _jumpCount++;
                _isInAir = true;
            }
