@@ -10,12 +10,12 @@ public class Player : ControllerInput {
     private bool    _canJump;
     private int     _jumpCount;
     [SerializeField]
-    private float   _jumpheight;
+    private float   _jumpHeight;
     [SerializeField]    
     private int     _maxJumps;
     //Speed
     [SerializeField]    
-    private float   _dashSpeed;
+    private float   _teleportDistance;
     [SerializeField]    
     private float   _speed;
     //Attack
@@ -96,7 +96,7 @@ public class Player : ControllerInput {
        {
            if(_aPressed)
            {
-               this.GetComponent<Rigidbody>().velocity = new Vector3(0, _jumpheight, 0);
+               this.GetComponent<Rigidbody>().velocity = new Vector3(0, _jumpHeight, 0);
                _jumpCount++;
                _isInAir = true;
            }
@@ -107,13 +107,13 @@ public class Player : ControllerInput {
             if(_lbPressed)
             {
                 Instantiate(_smokeCloud, transform.position, Quaternion.identity);
-                transform.Translate(Vector3.left * Time.deltaTime * _dashSpeed);
+                transform.Translate(Vector3.left * Time.deltaTime * _teleportDistance);
                 
             }
             if(_rbPressed)
             {
                 Instantiate(_smokeCloud, transform.position, Quaternion.identity);
-                transform.Translate(Vector3.right * Time.deltaTime * _dashSpeed);
+                transform.Translate(Vector3.right * Time.deltaTime * _teleportDistance);
             }
         }
     }
