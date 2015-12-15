@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 661972479cc205b41bb1bfc8a9cc133e
-timeCreated: 1449656098
+guid: 7463a790571bfcb408aa5b9f9d8a6769
+timeCreated: 1449825665
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,8 +9,8 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCylinder3
-    6400000: //RootNode
+    4300000: Ninja_Sword
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -35,9 +35,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 600
+    globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
