@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : ControllerInput {
-    
+public class Player : ControllerInput
+{
+
+    private bool _isAlive;
     //Terrain
-    private bool    _isGrounded;
-    private bool    _isInAir;
+    private bool _isGrounded;
+    private bool _isInAir;
     //Jumping
-    private bool    _canJump;
-    private int     _jumpCount;
+    private bool _canJump;
+    private int _jumpCount;
     [SerializeField]
-    private float   _jumpHeight;
-    [SerializeField]    
-    private int     _maxJumps;
+    private float _jumpHeight;
+    [SerializeField]
+    private int _maxJumps;
     //Speed
-    [SerializeField]    
-    private float   _teleportDistance;
-    [SerializeField]    
-    private float   _speed;
+    [SerializeField]
+    private float _teleportDistance;
+    [SerializeField]
+    private float _speed;
+    private float _defaultSpeed;
     //Attack
-    private float   _attackInterval = 1;
-    private float   _attackTimer = 0;
+    private float _attackInterval = 1;
+    private float _attackTimer = 0;
     //Particles & Animator
     Animator _playerAnim;
     [SerializeField]
@@ -28,41 +31,46 @@ public class Player : ControllerInput {
     private bool _isMoving;
 
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
         _playerAnim = GetComponent<Animator>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        AerialMovement();
-        Movement();
-        Rotate();
-        Attack();
+        _isAlive = true;
+    }
 
-        if (_attackTimer < _attackInterval)
+    // Update is called once per frame
+    void Update()
+    {
+        if (_isAlive)
         {
-            _attackTimer += Time.deltaTime;
+            AerialMovement();
+            Movement();
+            Rotate();
+            Attack();
+
+            if (_attackTimer < _attackInterval)
+            {
+                _attackTimer += Time.deltaTime;
+            }
         }
-	}
+    }
 
     void Movement()
     {
-        if(_lsUp)
+        if (_lsUp)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _speed);
-            _playerAnim.Play("Walk");
+            //_playerAnim.Play("Walk");
         }
-        if(_lsDown)
+        if (_lsDown)
         {
-            transform.Translate(-Vector3.forward * Time.deltaTime * _speed);
+            transform.Translate(-Vector3.forward * Time.deltaTime * _speed / 1.5f);
         }
-        if(_lsRight)
+        if (_lsRight)
         {
             transform.Translate(-Vector3.left * Time.deltaTime * _speed);
         }
-        if(_lsLeft)
+        if (_lsLeft)
         {
             transform.Translate(Vector3.left * Time.deltaTime * _speed);
         }
@@ -71,46 +79,50 @@ public class Player : ControllerInput {
     void Rotate()
     {
         Transform cameraController = transform.GetChild(0);
-        
-        if(_rsLeft)
+
+        if (_rsLeft)
         {
-            transform.Rotate(-Vector3.up * Time.deltaTime * 100);
+            transform.Rotate(-Vector3.up * Time.deltaTime * 250);
         }
-        if(_rsRight)
+        if (_rsRight)
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * 100);
+            transform.Rotate(Vector3.up * Time.deltaTime * 250);
         }
-        if(_rsUp)
+
+        if (_rsUp)
         {
-            cameraController.Rotate(-Vector3.right * Time.deltaTime * 100);
+            cameraController.Rotate(-Vector3.right * Time.deltaTime * 250);
         }
-        if(_rsDown)
+        if (_rsDown)
         {
-            cameraController.Rotate(Vector3.right * Time.deltaTime * 100);
+            cameraController.Rotate(Vector3.right * Time.deltaTime * 250);
         }
+
+
+
     }
 
     void AerialMovement()
     {
-       if(_jumpCount < _maxJumps)
-       {
-           if(_aPressed)
-           {
-               this.GetComponent<Rigidbody>().velocity = new Vector3(0, _jumpHeight, 0);
-               _jumpCount++;
-               _isInAir = true;
-           }
-       }
-
-        if(_isInAir)
+        if (_jumpCount < _maxJumps)
         {
-            if(_lbPressed)
+            if (_aPressed)
+            {
+                this.GetComponent<Rigidbody>().velocity = new Vector3(0, _jumpHeight, 0);
+                _jumpCount++;
+                _isInAir = true;
+            }
+        }
+
+        if (_isInAir)
+        {
+            if (_lbPressed)
             {
                 Instantiate(_smokeCloud, transform.position, Quaternion.identity);
                 transform.Translate(Vector3.left * Time.deltaTime * _teleportDistance);
-                
+
             }
-            if(_rbPressed)
+            if (_rbPressed)
             {
                 Instantiate(_smokeCloud, transform.position, Quaternion.identity);
                 transform.Translate(Vector3.right * Time.deltaTime * _teleportDistance);
@@ -120,13 +132,15 @@ public class Player : ControllerInput {
 
     void Attack()
     {
-       
-        if(_xPressed && _attackTimer >= _attackInterval)
+
+        if (_xPressed && _attackTimer >= _attackInterval)
         {
             //Attack animation
             _attackTimer = 0f;
+            _playerAnim.Play("Attack");
             Debug.Log("Attacking");
-        }else if(_xPressed && _attackTimer < _attackInterval)
+        }
+        else if (_xPressed && _attackTimer < _attackInterval)
         {
             Debug.Log("Cooldown");
         }
@@ -138,26 +152,30 @@ public class Player : ControllerInput {
         {
             _jumpCount = 0;
             _isInAir = false;
+
         }
 
-        if (other.gameObject.tag == "Player" )
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("Player");
         }
 
-        if (other.gameObject.tag == "Sword_Blade")
-        {
-            //Play death animation
 
-            //Respawn Timer
-        }
     }
 
     void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.tag =="Player")
+        if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Player");
+        }
+
+        if (coll.gameObject.tag == "Sword_Blade")
+        {
+            //Play death animation
+            //_isAlive = false;
+            Destroy(this.gameObject);
+            //Respawn Timer
         }
     }
 }

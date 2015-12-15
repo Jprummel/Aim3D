@@ -138,7 +138,7 @@ public class ControllerInput : MonoBehaviour {
             _rsPressed = false;
         }
 
-        if (Input.GetAxis(InputAxes.rt + joystickString)>0) //RIGHT TRIGGER (NOT WORKING YET)
+        if (Input.GetAxis(InputAxes.rt + joystickString)>0) //RIGHT TRIGGER
         {
             _rtPressed = true;
         }
@@ -150,6 +150,7 @@ public class ControllerInput : MonoBehaviour {
         if (Input.GetAxis(InputAxes.lt + joystickString)>0) //LEFT TRIGGER
         {
             _ltPressed = true;
+            Debug.Log("LT");
         }
         else
         {
