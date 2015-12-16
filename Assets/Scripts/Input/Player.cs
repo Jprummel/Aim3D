@@ -60,7 +60,7 @@ public class Player : ControllerInput
         if (_lsUp)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _speed);
-            //_playerAnim.Play("Walk");
+            _playerAnim.Play("Walk 1");
         }
         if (_lsDown)
         {

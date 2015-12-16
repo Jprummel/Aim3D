@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f863c79379082fa42868b159793309a0
-timeCreated: 1450183795
+guid: 455df5e17394b704b87f7f46067caa18
+timeCreated: 1450280240
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube7
+    4300000: ninja_placeholder
     9500000: //RootNode
   materials:
     importMaterials: 1

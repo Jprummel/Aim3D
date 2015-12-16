@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4fe56fe231ef4934fbba03ba14adad0e
-timeCreated: 1449824894
+guid: f915faa0e0d47fa41b3025b28e55f8f3
+timeCreated: 1450279229
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Ninja_Sword
-    7400000: Take 001
+    4300000: ninja_placeholder
     9500000: //RootNode
   materials:
     importMaterials: 1

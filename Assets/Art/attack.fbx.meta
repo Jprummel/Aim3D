@@ -1,29 +1,31 @@
 fileFormatVersion: 2
-guid: 9093889906f4f0c44a3b4be6a405039c
-timeCreated: 1449826030
+guid: 1d0a9afef44f85142b0538239471c8c4
+timeCreated: 1450281426
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Kunai
-    100002: //RootNode
-    100004: pCylinder2
-    100006: pPyramid1
-    100008: pTorus1
-    100010: transform1
-    100012: transform2
-    100014: transform3
-    400000: Kunai
-    400002: //RootNode
-    400004: pCylinder2
-    400006: pPyramid1
-    400008: pTorus1
-    400010: transform1
-    400012: transform2
-    400014: transform3
-    2300000: Kunai
-    3300000: Kunai
-    4300000: Kunai
+    100000: //RootNode
+    100002: group
+    100004: ninja_placeholder
+    100006: pasted__Ninja_Sword
+    100008: pPyramid5
+    100010: pPyramid6
+    100012: pPyramid7
+    400000: //RootNode
+    400002: group
+    400004: ninja_placeholder
+    400006: pasted__Ninja_Sword
+    400008: pPyramid5
+    400010: pPyramid6
+    400012: pPyramid7
+    2300000: ninja_placeholder
+    2300002: pasted__Ninja_Sword
+    3300000: ninja_placeholder
+    3300002: pasted__Ninja_Sword
+    4300000: ninja_placeholder
+    4300002: pasted__Ninja_Sword
+    7400000: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1

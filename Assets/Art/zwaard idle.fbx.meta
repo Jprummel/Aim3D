@@ -1,46 +1,17 @@
 fileFormatVersion: 2
-guid: f7f01f7ca58a5574f859e48c5699544d
-timeCreated: 1450183795
+guid: f0f30a867e5f1a54bbe2821d312d0597
+timeCreated: 1450282387
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Ninja_Sword
-    100002: pCube1
-    100004: pCube2
-    100006: pCube3
-    100008: pCube4
-    100010: pCube5
-    100012: pCube6
-    100014: pCube7
-    100016: //RootNode
-    100018: transform1
-    100020: transform2
-    100022: transform3
-    100024: transform4
-    100026: transform5
-    100028: transform6
-    400000: Ninja_Sword
-    400002: pCube1
-    400004: pCube2
-    400006: pCube3
-    400008: pCube4
-    400010: pCube5
-    400012: pCube6
-    400014: pCube7
-    400016: //RootNode
-    400018: transform1
-    400020: transform2
-    400022: transform3
-    400024: transform4
-    400026: transform5
-    400028: transform6
-    2300000: Ninja_Sword
-    2300002: pCube7
-    3300000: Ninja_Sword
-    3300002: pCube7
-    4300000: pCube7
-    4300002: Ninja_Sword
+    100000: pasted__Ninja_Sword
+    100002: //RootNode
+    400000: pasted__Ninja_Sword
+    400002: //RootNode
+    2300000: pasted__Ninja_Sword
+    3300000: pasted__Ninja_Sword
+    4300000: pasted__Ninja_Sword
     9500000: //RootNode
   materials:
     importMaterials: 1
