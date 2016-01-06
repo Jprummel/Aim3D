@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : ControllerInput
@@ -29,12 +30,17 @@ public class Player : ControllerInput
     [SerializeField]
     private GameObject _smokeCloud;
     private bool _isMoving;
-
+    //Lives
+    public Text livesText;
+    [SerializeField]
+    private int _lives;
 
     // Use this for initialization
     void Start()
     {
         _playerAnim = GetComponent<Animator>();
+        livesText = GameObject.Find("Player" + joystickNumber + "Lives").GetComponent<Text>();
+        livesText.text = "Player " + joystickNumber + " Lives : " + _lives.ToString();
         _isAlive = true;
     }
 
@@ -60,7 +66,7 @@ public class Player : ControllerInput
         if (_lsUp)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _speed);
-            _playerAnim.Play("Walk 1");
+            _playerAnim.SetInteger("State",1);
         }
         if (_lsDown)
         {
@@ -120,7 +126,6 @@ public class Player : ControllerInput
             {
                 Instantiate(_smokeCloud, transform.position, Quaternion.identity);
                 transform.Translate(Vector3.left * Time.deltaTime * _teleportDistance);
-
             }
             if (_rbPressed)
             {
@@ -137,7 +142,7 @@ public class Player : ControllerInput
         {
             //Attack animation
             _attackTimer = 0f;
-            _playerAnim.Play("Attack");
+            _playerAnim.SetTrigger("Attacking");
             Debug.Log("Attacking");
         }
         else if (_xPressed && _attackTimer < _attackInterval)
@@ -169,13 +174,20 @@ public class Player : ControllerInput
         {
             Debug.Log("Player");
         }
-
+        if(_playerAnim.)
         if (coll.gameObject.tag == "Sword_Blade")
         {
             //Play death animation
-            //_isAlive = false;
-            Destroy(this.gameObject);
+            UpdateLives();
+            _isAlive = false;
+            //Destroy(this.gameObject);
             //Respawn Timer
         }
+    }
+
+    void UpdateLives()
+    {
+        _lives--;
+        livesText.text = "Player " + joystickNumber + " Lives : " + _lives.ToString();
     }
 }
