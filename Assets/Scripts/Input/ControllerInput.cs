@@ -3,42 +3,46 @@ using System.Collections;
 
 public class ControllerInput : MonoBehaviour {
 
+    public int  joystickNumber; //Assigns Controller number to player object
     //Face Buttons
-    protected bool _aPressed;
-    protected bool _xPressed;
-    protected bool _yPressed;
-    protected bool _bPressed;
+    public bool _aPressed;
+    public bool _xPressed;
+    public bool _yPressed;
+    public bool _bPressed;
     //Start and Back
-    protected bool _startPressed;
-    protected bool _backPressed;
+    public bool _startPressed;
+    public bool _backPressed;
     //Bumpers and Triggers
-    protected bool _rbPressed;
-    protected bool _rtPressed;
-    protected bool _lbPressed;
-    protected bool _ltPressed;
+    public bool _rbPressed;
+    public bool _rtPressed;
+    public bool _lbPressed;
+    public bool _ltPressed;
     //Analog Clicks
-    protected bool _rsPressed;
-    protected bool _lsPressed;
+    public bool _rsPressed;
+    public bool _lsPressed;
     //Analog Sticks
     //Left
-    protected bool _lsLeft;
-    protected bool _lsRight;
-    protected bool _lsUp;
-    protected bool _lsDown;
+    public bool _lsLeft;
+    public bool _lsRight;
+    public bool _lsUp;
+    public bool _lsDown;
     //Right
-    protected bool _rsLeft;
-    protected bool _rsRight;
-    protected bool _rsUp;
-    protected bool _rsDown;
+    public bool _rsLeft;
+    public bool _rsRight;
+    public bool _rsUp;
+    public bool _rsDown;
     //DPAD
-    protected bool _dPadUp;
-    protected bool _dPadDown;
-    protected bool _dPadLeft;
-    protected bool _dPadRight;
+    public bool _dPadUp;
+    public bool _dPadDown;
+    public bool _dPadLeft;
+    public bool _dPadRight;
+    
+    void Start()
+    {
 
-    public int joystickNumber;
+    }
 
-    void FixedUpdate()
+    void Update()
     {
         XboxInput();
     }

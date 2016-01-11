@@ -24,7 +24,7 @@ ModelImporter:
     4300000: hat
     4300002: pasted__Ninja_Sword
     4300004: Body_mesh
-    7400000: Take 001
+    7400000: Walk
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -47,7 +47,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Walk
       takeName: Take 001
       firstFrame: 1
       lastFrame: 20
