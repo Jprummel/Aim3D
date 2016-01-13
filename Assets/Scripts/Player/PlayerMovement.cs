@@ -2,19 +2,19 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
-
+    //Script Imports
                     private ControllerInput     _input;        //Input Class import
-                    private AnimStateHandler    _animator;     //Animator Class Import
+                    private PlayerRespawn       _respawn;      //Respawn class import to check if player is alive or not 
     //Speed
     [SerializeField]private float               _movementSpeed;
-    [SerializeField]private float               _cameraSensitivityX;
-    [SerializeField]private float               _cameraSensitivityY;
+    [SerializeField]private float               _rotationSpeed;
     [SerializeField]private float               _teleportDistance;
     //Jumping
-                    private bool                _canJump;      //checks if player can jump
-                    private int                 _jumpCount;    //Amount of times jumped
     [SerializeField]private float               _jumpHeight;
     [SerializeField]private int                 _maxJumps;     //Sets the max amount of jumps a player can make
+                    private bool                _canJump;      //checks if player can jump
+                    private int                 _jumpCount;    //Amount of times jumped
+    
     //Terrain
                     private bool                _isGrounded;   //Checks if player is on the ground
                     private bool                _isInAir;      //Checks if the player has jumped / is in the air
@@ -25,62 +25,50 @@ public class PlayerMovement : MonoBehaviour {
     {
       //_input.joystickNumber = controllerNumber;
         _input      = GetComponent<ControllerInput>();
-        _animator   = GetComponent<AnimStateHandler>();
+        _respawn    = GetComponent<PlayerRespawn>();
     }
 
     void Update()
     {
-        Movement();
-        Rotation();
-        AerialMovement();
+        if (_respawn.IsAlive()) //Enables Movement functions if the player is alive
+        {
+            Movement();
+            Rotation();
+            AerialMovement();
+        }
     }
-     public void Movement()
-    {
-        if (_input._lsUp)       //Moves forward
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * _movementSpeed);
-        }
-        if (_input._lsDown)     //Moves backward (Backpeddling)
-        {
-            transform.Translate(-Vector3.forward * Time.deltaTime * _movementSpeed / 2f);   //Backpeddling has decreased movement speed
-        }
-        if (_input._lsRight)    //Moves right (strafe)
-        {
-            transform.Translate(-Vector3.left * Time.deltaTime * _movementSpeed);
-        }
-        if (_input._lsLeft)     //Moves left (strafe)
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * _movementSpeed);
-        }
 
-        if(!_input._lsDown && !_input._lsUp && !_input._lsLeft && !_input._lsRight)
-        {
-            //_animator.AnimState(0);
-        }
+    public void Movement()
+    {
+            if (_input._lsUp)       //Moves forward
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * _movementSpeed);
+            }
+            if (_input._lsDown)     //Moves backward (Backpeddling)
+            {
+                transform.Translate(-Vector3.forward * Time.deltaTime * _movementSpeed / 2f);   //Backpeddling has decreased movement speed
+            }
+            if (_input._lsRight)    //Moves right (strafe)
+            {
+                transform.Translate(-Vector3.left * Time.deltaTime * _movementSpeed);
+            }
+            if (_input._lsLeft)     //Moves left (strafe)
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * _movementSpeed);
+            }
     }
 
     public void Rotation()
     {
-
-         Transform cameraController = transform.GetChild(0);
-         //Rotates the player+camera on the X Axis
-         if (_input._rsLeft)        //Rotates Left
-         {
-             transform.Rotate(-Vector3.up * Time.deltaTime * _cameraSensitivityX);
-         }
-         if (_input._rsRight)       //Rotates Right
-         {
-             transform.Rotate(Vector3.up * Time.deltaTime * _cameraSensitivityX);
-         }
-         //Rotates the camera on the Y axis
-         if (_input._rsUp)          //Rotates up
-         {
-             cameraController.Rotate(-Vector3.right * Time.deltaTime * _cameraSensitivityY);
-         }
-         if (_input._rsDown)        //Rotates Down
-         {
-             cameraController.Rotate(Vector3.right * Time.deltaTime * _cameraSensitivityY);
-         }
+        //Rotates the player on the Y Axis
+        if (_input._rsLeft)        //Rotates Left
+        {
+            transform.Rotate(-Vector3.up * Time.deltaTime * _rotationSpeed);
+        }
+        if (_input._rsRight)       //Rotates Right
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * _rotationSpeed);
+        }
     }
 
     void AerialMovement()

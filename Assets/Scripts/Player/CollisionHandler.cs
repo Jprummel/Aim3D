@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class CollisionHandler : MonoBehaviour {
+
+    [SerializeField]private GameObject      _bloodSplatter; //Blood Particle
+                    private PlayerMovement  _movement;      //Import Movement script for Jumpcount resets and aerialmovement
+                    private PlayerRespawn   _respawn;       //Import Animatior script
     
-    private PlayerMovement      _movement;  //Import Movement script for Jumpcount resets and aerialmovement
-    private PlayerAttack        _attack;    //Import Attack script
-    private PlayerHealth        _health;    //Import Player Health script
-    private PlayerRespawn       _respawn;  //Import Animatior script
 
     void Start()
     {
         _movement   = GetComponent<PlayerMovement>();
-        _attack     = GetComponent<PlayerAttack>();
-        _health     = GetComponent<PlayerHealth>();
         _respawn    = GetComponent<PlayerRespawn>();
     }
 
@@ -30,7 +28,14 @@ public class CollisionHandler : MonoBehaviour {
         
         if (coll.gameObject.tag == "Sword_Blade")
         {
+            PlayerAttack enemySword = coll.gameObject.GetComponentInParent<PlayerAttack>();
+            if (enemySword.Attacking()) //Checks if other player is attacking or not
+            {
+                GameObject newBloodSplatter = Instantiate(_bloodSplatter, transform.position, Quaternion.identity) as GameObject; //Spawns blood particle
+                newBloodSplatter.transform.parent = transform;
+                newBloodSplatter.transform.localPosition = new Vector3(0, 1.1f, 0); //Positions blood particle
                 StartCoroutine(_respawn.Respawn());
+            }
         }
     }
 }

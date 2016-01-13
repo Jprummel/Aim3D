@@ -4,9 +4,11 @@ using System.Collections;
 
 public class WinText : MonoBehaviour {
 
-    public GameObject _player1;
-    public GameObject _player2;
-    private Text _winText;
+    [SerializeField]private float _endtimer;
+                    private GameObject  _player1;
+                    private GameObject  _player2;
+                    private Text        _winText;
+    
     
 
 	// Use this for initialization
@@ -21,9 +23,17 @@ public class WinText : MonoBehaviour {
 	    if(!_player1)
         {
             _winText.text = "Player 2 Wins!";
+            StartCoroutine(EndGame());
         }else if(!_player2)
         {
             _winText.text = "Player 1 Wins!";
+            StartCoroutine(EndGame());
         }
 	}
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(_endtimer);
+        Application.LoadLevel("EndGame");
+    }
 }

@@ -5,8 +5,8 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]private int             _startHealth;
+                    private int _currentHealth;
                     private ControllerInput _input;
-                    private int             _currentHealth;
                     public  Text            livesText;
 
 	void Start () {
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 	
 	void Update () {
-	    
+        StartCoroutine(Death());
 	}
 
     public void ChangeHealth(int value)
@@ -34,5 +34,14 @@ public class PlayerHealth : MonoBehaviour {
     public void UpdateLiveText()
     {
         livesText.text = "Player " + _input.joystickNumber + " Lives : " + _currentHealth.ToString();
+    }
+
+    IEnumerator Death()
+    {
+        if(_currentHealth <= 0)
+        {
+            yield return new WaitForSeconds(1);
+            Destroy(this.gameObject);
+        }
     }
 }
