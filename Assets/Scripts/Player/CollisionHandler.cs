@@ -19,6 +19,7 @@ public class CollisionHandler : MonoBehaviour {
         if (other.gameObject.tag == "Ground")
         {
             _movement.JumpCountReset();
+            _movement.TeleportCountReset();
             _movement.NotInAir();
         }
     }

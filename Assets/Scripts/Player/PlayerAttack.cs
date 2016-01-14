@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Cooldown");
+
         }
     }
 

@@ -7,6 +7,7 @@ public class CameraFollower : MonoBehaviour {
     [SerializeField]private float           _cameraSensitivityX;
     [SerializeField]private float           _cameraSensitivityY;
                     private ControllerInput _input;
+                    private PlayerRespawn   _respawn;
                     private Vector3         _offset;
                     private float           _minX;
                     private float           _maxX;
@@ -18,16 +19,19 @@ public class CameraFollower : MonoBehaviour {
 
     void Start()
     {
-        _offset = target.position - this.transform.position;
-        _input = GetComponent<ControllerInput>();
+        _offset     = target.position - this.transform.position;
+        _input      = GetComponent<ControllerInput>();
+        _respawn    = GetComponentInParent<PlayerRespawn>();
     }
 
     void LateUpdate()
     {
         //makes the object that this script is on follow a target
         this.transform.position = target.position - _offset;
-        //this.transform.rotation = CalculateRotation();
-        CamRotation();
+        if (_respawn.IsAlive())
+        {
+            CamRotation();
+        }
     }
 
 

@@ -11,9 +11,11 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]private float               _teleportDistance;
     //Jumping
     [SerializeField]private float               _jumpHeight;
+    [SerializeField]private int                 _maxTeleports; //Sets the max amount of teleports
     [SerializeField]private int                 _maxJumps;     //Sets the max amount of jumps a player can make
                     private bool                _canJump;      //checks if player can jump
                     private int                 _jumpCount;    //Amount of times jumped
+                    private int                 _teleportCount;//Amount of times teleported
     
     //Terrain
                     private bool                _isGrounded;   //Checks if player is on the ground
@@ -85,26 +87,37 @@ public class PlayerMovement : MonoBehaviour {
 
         if (_isInAir)               // Checks if player is in the air
         {
-            if (_input._lbPressed)  //Teleports left
+            if (_teleportCount < _maxTeleports)
             {
-                Instantiate(_smokeCloud, transform.position, Quaternion.identity);
-                transform.Translate(Vector3.left * Time.deltaTime * _teleportDistance);
-            }
-            if (_input._rbPressed)  //Teleports right
-            {
-                Instantiate(_smokeCloud, transform.position, Quaternion.identity);
-                transform.Translate(Vector3.right * Time.deltaTime * _teleportDistance);
+                if (_input._lbPressed)  //Teleports left
+                {
+                    Instantiate(_smokeCloud, this.transform.position, Quaternion.identity);
+                    this.transform.Translate(Vector3.left * Time.deltaTime * _teleportDistance);
+                    _teleportCount++;
+                }
+                if (_input._rbPressed)  //Teleports right
+                {
+                    Instantiate(_smokeCloud, this.transform.position, Quaternion.identity);
+                    this.transform.Translate(Vector3.right * Time.deltaTime * _teleportDistance);
+                    _teleportCount++;
+                }
             }
         }
     }
 
     public int JumpCountReset()
     {
-       return _jumpCount = 0;       //Sets the jump count back to 0 allowing the player to jump again
+        return _jumpCount = 0;       //Sets the jump count back to 0 allowing the player to jump again
+    }
+
+    public int TeleportCountReset()
+    {
+        return _teleportCount = 0;
     }
 
     public bool NotInAir()
     {
         return _isInAir = false;
+        
     }
 }
