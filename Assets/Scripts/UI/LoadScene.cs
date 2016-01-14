@@ -4,10 +4,8 @@ using System.Collections;
 //Author : Jordi Prummel
 
 public class LoadScene : MonoBehaviour {
-	[SerializeField]
-    private     string  _sceneName;
-    [SerializeField]
-    private     int     _delay;
+	[SerializeField]private string  _sceneName;
+    [SerializeField]private int     _delay;
 
 	public void ChangeLevel()
 	{

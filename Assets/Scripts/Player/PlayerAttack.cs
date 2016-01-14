@@ -38,10 +38,6 @@ public class PlayerAttack : MonoBehaviour {
             StartCoroutine(AttackTimer());  //Starts timewindow of the animation so enemy can only be hit if the animation is playing
             Debug.Log("Attacking");
         }
-        else
-        {
-
-        }
     }
 
     IEnumerator AttackTimer()

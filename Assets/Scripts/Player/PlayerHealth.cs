@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
     [SerializeField]private int             _startHealth;
-                    private int _currentHealth;
+                    private int             _currentHealth;
                     private ControllerInput _input;
                     public  Text            livesText;
 

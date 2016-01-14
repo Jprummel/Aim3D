@@ -4,7 +4,7 @@ using System.Collections;
 
 public class WinText : MonoBehaviour {
 
-    [SerializeField]private float _endtimer;
+    [SerializeField]private float       _endtimer;
                     private GameObject  _player1;
                     private GameObject  _player2;
                     private Text        _winText;

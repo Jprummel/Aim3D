@@ -6,11 +6,11 @@ public class CameraFollower : MonoBehaviour {
     //Makes it able to set a target
     [SerializeField]private float           _cameraSensitivityX;
     [SerializeField]private float           _cameraSensitivityY;
+    [SerializeField]private float           _minX;
+    [SerializeField]private float           _maxX;                
                     private ControllerInput _input;
                     private PlayerRespawn   _respawn;
                     private Vector3         _offset;
-                    private float           _minX;
-                    private float           _maxX;
                     private float           _rotationX;
                     private float           _rotationY;
                     public  Transform       target;
@@ -38,7 +38,7 @@ public class CameraFollower : MonoBehaviour {
 
     void CamRotation()
     {
-        _rotationX = Mathf.Clamp(_rotationX, -45, 45);
+        _rotationX = Mathf.Clamp(_rotationX, _minX, _maxX);
         this.transform.rotation = target.rotation;
         
         this.transform.eulerAngles = new Vector3(_rotationX, _rotationY );

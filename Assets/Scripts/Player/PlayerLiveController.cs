@@ -3,15 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerLiveController : MonoBehaviour {
-    [SerializeField]
-    private GameObject _Player;
-    private PlayerHealth _playerHealth;
-    private int _lives;
-    private Text livesText;
-	// Use this for initialization
+    [SerializeField]private GameObject      _Player;
+                    private PlayerHealth    _playerHealth;
+                    private int             _lives;
+                    private Text            livesText;
+
 	void Start () {
-        _playerHealth = _playerHealth.GetComponent<PlayerHealth>();
-        livesText = GetComponent<Text>();
+        _playerHealth   = _playerHealth.GetComponent<PlayerHealth>();
+        livesText       = GetComponent<Text>();
         UpdateText();
 	}
 	

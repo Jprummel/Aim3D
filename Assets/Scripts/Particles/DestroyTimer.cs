@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class DestroyTimer : MonoBehaviour {
-    private float timeStamp;
-    public float destroy;
+    private float   timeStamp;
+    public  float   destroy;
 	// Use this for initialization
 	void Start () {
         timeStamp = Time.time + destroy;
